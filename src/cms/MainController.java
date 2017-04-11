@@ -8,17 +8,20 @@ import java.sql.Statement;
 import java.util.Properties;
 import java.util.Scanner;
 
+import course.CourseOfferedTO;
 import admin.Admin;
 
 public class MainController {
 	public static void main(String[] args) throws ClassNotFoundException {
 		Scanner sc = new Scanner(System.in);
+		CourseOfferedTO courseOfferedTo = new CourseOfferedTO();
 		int userOption;
 		System.out.println("Royal Institute Of Technology");
 		System.out.println("1. Login as Admin.");
 		System.out.println("2. Login as Program Coordinator");
 		System.out.println("3. Login as Lecturer");
 		System.out.println("4. Login as Student");
+		System.out.println("Enter your Option: ");
 		LoginDetails loginDetails = new LoginDetails();
 		userOption=sc.nextInt();
 		switch(userOption){
@@ -33,6 +36,19 @@ public class MainController {
 			loginDetails.setPassword(password);
 			String message=new Admin().adminCredentials(loginDetails);
 			System.out.println(message);
+			System.out.println("Enter an Option: ");
+			System.out.println("1. Add Course Offerings");
+			switch(sc.nextInt()){
+			case 1:
+				System.out.println("Add Course");
+				System.out.println("Enter the course code: ");
+				courseOfferedTo.setCourseId(sc.next());
+				System.out.println("Enter the course name : ");
+				courseOfferedTo.setCourseName(sc.next());
+				System.out.println("Enter the semester for which this course is offered : ");
+				courseOfferedTo.setSemester(sc.nextInt());
+				
+			}
 			break;
 		}
 		case 2:{
